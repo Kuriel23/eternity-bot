@@ -14,7 +14,7 @@ module.exports = async (client, message) => {
           {
             name: "<:White_butterfly_etr:1061740110334398514> Para consultar o psicólogo",
             value:
-              '** <a:brilhin_white_etr:1061740340064829441> Basta abrir um ticket no <#1058385359374913556>, esse ticket será totalmente fechado, só psicólogos e administradores do servidor terão acesso ao ticket, se preferir desabafar com os membros sem o aconselhamento de um "Psicólogo" do servidor bastar ir em <#940776226946179103> <:heartwhitekonan_etr:1061741816896049242> **',
+              '** <a:brilhin_white_etr:1061740340064829441> Basta abrir um ticket no <#1058385359374913556>, esse ticket será totalmente fechado, só psicólogos e administradores do servidor terão acesso ao ticket, se preferir desabafar com os membros sem o aconselhamento de um "Psicólogo" do servidor bastar ir em <#1068723620400091167> <:heartwhitekonan_etr:1061741816896049242> **',
             inline: false,
           },
         ],
