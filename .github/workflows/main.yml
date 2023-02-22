@@ -1,0 +1,26 @@
+name: Deploy Bot
+
+on: push
+
+jobs:
+  Fast-FTP-Action:
+    name: Fast FTP Action
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: SFTP Upload
+      uses: Dylan700/sftp-upload-action@latest
+      with:
+        server: eu1.odd.gay
+        username: kuriel23.2760cb5d
+        password: ${{secrets.FTP_PASSWORD}}
+        port: 2022
+        uploads: |
+          ./ => ./
+        ignore: |
+          *.git
+          */**/*git*
+          ./.vscode
+          
