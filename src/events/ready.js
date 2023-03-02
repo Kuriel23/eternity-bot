@@ -9,8 +9,8 @@ module.exports = async (client) => {
   schedulers();
 
   async function schedulers() {
-    client.dbm.Guilds.findOne({ _id: "1" }, async function (err, not) {
-      if (err) return 0;
+    const not = await client.dbm.Guilds.findOne({ _id: "1" });
+    if (not) {
       not.vipschedule.forEach((vips) => {
         schedule.scheduleJob(vips.schedule, function () {
           const cargo = vips.vip
@@ -36,7 +36,7 @@ module.exports = async (client) => {
         });
       });
       await not.save();
-    });
+    }
   }
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")

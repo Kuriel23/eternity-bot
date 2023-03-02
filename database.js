@@ -1,4 +1,4 @@
-const { connect, Schema, model, set } = require('mongoose');
+const { connect, Schema, model, set } = require("mongoose");
 const { ChalkAdvanced } = require("chalk-advanced");
 set("strictQuery", true);
 connect(process.env.db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -17,47 +17,46 @@ connect(process.env.db, { useNewUrlParser: true, useUnifiedTopology: true })
     )
   );
 
-
 const guildSchema = new Schema({
   _id: { type: String, required: true },
   vipschedule: [
     {
-      _id: { type: String },
-      vip: { type: String },
-      schedule: { type: Date },
+      _id: String,
+      vip: String,
+      schedule: Date,
     },
   ],
   partnerschedule: [
     {
-      _id: { type: String },
-      schedule: { type: Date },
+      _id: String,
+      schedule: Date,
     },
   ],
 });
 
 const staffsSchema = new Schema({
   _id: { type: String, required: true },
-  cargo: { type: String },
+  cargo: String,
   days: [
     {
-      0: { type: Boolean },
-      1: { type: Boolean },
-      2: { type: Boolean },
-      3: { type: Boolean },
-      4: { type: Boolean },
-      5: { type: Boolean },
-      6: { type: Boolean },
+      0: Boolean,
+      1: Boolean,
+      2: Boolean,
+      3: Boolean,
+      4: Boolean,
+      5: Boolean,
+      6: Boolean,
     },
   ],
   ausente: [
     {
-      status: { type: Boolean },
-      endTime: { type: Date },
+      status: Boolean,
+      endTime: Date,
     },
   ],
   weekStatus: [
     {
-      messages: { type: Number },
+      messages: Number,
     },
   ],
 });
@@ -65,7 +64,7 @@ const staffsSchema = new Schema({
 const userSchema = new Schema({
   _id: { type: String, required: true },
   vips: {
-    roleid: { type: String },
+    roleid: String,
     rolelimit: { type: Number, default: 0 },
     channelimit: { type: Number, default: 0 },
   },

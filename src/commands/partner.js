@@ -71,8 +71,8 @@ module.exports = {
       });
       await client.db.add(interaction.member.id + ".parcerias", 1);
 
-      client.dbm.Guilds.findOne({ _id: "1" }, function (err, doc) {
-        if (err) return;
+      const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+      if (doc) {
         const _date = new Date();
         _date.setDate(_date.getDate() + 7);
         const date = new Date(_date);
@@ -91,7 +91,7 @@ module.exports = {
           });
           doc.save();
         });
-      });
+      }
     }
   },
 };

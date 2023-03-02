@@ -32,8 +32,8 @@ module.exports = async (client, interaction) => {
       .replace(/`+/g, "")
       .replace("<@&940072769624875119>", "") +
     " <@&939904145920520362>".match(idRegex)[1];
-  client.dbm.Guilds.findOne({ _id: "1" }, function (err, doc) {
-    if (err) return;
+  const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+  if (doc) {
     const _date = new Date();
     _date.setDate(_date.getDate() + 7);
     const date = new Date(_date);
@@ -52,5 +52,5 @@ module.exports = async (client, interaction) => {
       });
       doc.save();
     });
-  });
+  }
 };

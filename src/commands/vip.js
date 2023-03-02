@@ -93,34 +93,31 @@ module.exports = {
       case "share_role": {
         const amigo = interaction.options.getMember("amigo");
         const person2 = interaction.guild.members.cache.get(amigo.id);
-        client.dbm.Users.findOne(
-          { _id: interaction.member.id },
-          function (err, doc) {
-            if (err) return 0;
-            if (doc) {
-              if (doc.roleid !== "")
-                return interaction.reply({
-                  content:
-                    "Parece que não sei qual o id do seu cargo de vip, uma ação manual foi acionada para esse seu cargo.",
-                });
-              if (doc.rolelimit >= 4)
-                return interaction.reply({
-                  content:
-                    "Calma aí! Parece que você já deu o seu cargo para 4 amigos.",
-                });
-              person2.roles.add(doc.roleid);
-              doc.rolelimit += 1;
-              doc.save();
-              interaction.reply({
-                content: "Dei o cargo para o seu amigo!",
-              });
-            } else {
-              return interaction.reply({
-                content: "Que estranho seu dado não foi encontrado aqui.",
-              });
-            }
-          }
-        );
+        const doc = await client.dbm.Users.findOne({
+          _id: interaction.member.id,
+        });
+        if (doc) {
+          if (doc.roleid !== "")
+            return interaction.reply({
+              content:
+                "Parece que não sei qual o id do seu cargo de vip, uma ação manual foi acionada para esse seu cargo.",
+            });
+          if (doc.rolelimit >= 4)
+            return interaction.reply({
+              content:
+                "Calma aí! Parece que você já deu o seu cargo para 4 amigos.",
+            });
+          person2.roles.add(doc.roleid);
+          doc.rolelimit += 1;
+          doc.save();
+          interaction.reply({
+            content: "Dei o cargo para o seu amigo!",
+          });
+        } else {
+          return interaction.reply({
+            content: "Que estranho seu dado não foi encontrado aqui.",
+          });
+        }
         break;
       }
       case "register": {
@@ -133,8 +130,8 @@ module.exports = {
             ephemeral: true,
           });
 
-        client.dbm.Guilds.findOne({ _id: "1" }, function (err, doc) {
-          if (err) return 0;
+        const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+        if (doc) {
           const _date = new Date();
           _date.setMonth(_date.getMonth() + 1);
           const date = new Date(_date);
@@ -161,7 +158,7 @@ module.exports = {
             doc.vipschedule.pull({ _id: pessoa.id });
             doc.save();
           });
-        });
+        }
         break;
       }
       case "create_role": {
@@ -192,23 +189,21 @@ module.exports = {
             color: hex,
             reason: "Novo cargo para VIP's",
           })
-          .then((role) => {
+          .then(async (role) => {
             interaction.member.roles.add(role);
-            client.db.Users.findOne(
-              { _id: interaction.member.id },
-              function (err, doc) {
-                if (err) return 0;
-                if (doc) {
-                  doc.vips.roleid = role.id;
-                  doc.save();
-                } else {
-                  new client.db.Users({
-                    _id: interaction.member.id,
-                    vips: { roleid: role.id },
-                  }).save();
-                }
-              }
-            );
+            const doc = await client.db.Users.findOne({
+              _id: interaction.member.id,
+            });
+
+            if (doc) {
+              doc.vips.roleid = role.id;
+              doc.save();
+            } else {
+              new client.db.Users({
+                _id: interaction.member.id,
+                vips: { roleid: role.id },
+              }).save();
+            }
           });
 
         interaction.reply({ content: "Seu cargo foi criado com sucesso!" });
