@@ -13,7 +13,7 @@ jobs:
     - name: SFTP Upload
       uses: Dylan700/sftp-upload-action@latest
       with:
-        server: eu1.odd.gay
+        server: t-us.odd.gay
         username: kuriel23.2760cb5d
         password: ${{secrets.FTP_PASSWORD}}
         port: 2022
