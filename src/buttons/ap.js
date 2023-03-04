@@ -26,31 +26,33 @@ module.exports = async (client, interaction) => {
   });
 
   const idRegex = /<@([0-9]+)>/;
-  const id =
+  let id =
     interaction.message.content
       .toString()
       .replace(/`+/g, "")
-      .replace("<@&940072769624875119>", "") +
-    " <@&939904145920520362>".match(idRegex)[1];
-  const doc = await client.dbm.Guilds.findOne({ _id: "1" });
-  if (doc) {
-    const _date = new Date();
-    _date.setDate(_date.getDate() + 7);
-    const date = new Date(_date);
-    doc.partnerschedule.push({
-      _id: id,
-      schedule: date,
-    });
-    doc.save();
-
-    schedule.scheduleJob(date, function () {
-      interaction.guild.members.cache
-        .get(id)
-        .roles.remove("939904131940900885");
-      doc.partnerschedule.pull({
+      .replace("<@&940072769624875119>", "") + " <@&939904145920520362>";
+  if (id.match(idRegex)[1]) {
+    id = id.match(idRegex)[1]
+    const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+    if (doc) {
+      const _date = new Date();
+      _date.setDate(_date.getDate() + 7);
+      const date = new Date(_date);
+      doc.partnerschedule.push({
         _id: id,
+        schedule: date,
       });
       doc.save();
-    });
+
+      schedule.scheduleJob(date, function () {
+        interaction.guild.members.cache
+          .get(id)
+          .roles.remove("939904131940900885");
+        doc.partnerschedule.pull({
+          _id: id,
+        });
+        doc.save();
+      });
+    }
   }
 };
