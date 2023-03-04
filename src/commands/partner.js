@@ -19,6 +19,11 @@ module.exports = {
     ),
   async execute(interaction, client) {
     const user = interaction.options.getMember("representante");
+    if (!user)
+      return interaction.reply({
+        content: "O representante precisa estar no servidor.",
+        ephemeral: true,
+      });
     const modal = new discord.ModalBuilder()
       .setCustomId("parceria" + interaction.member.id)
       .setTitle("Realizando uma parceria");
@@ -43,12 +48,7 @@ module.exports = {
       });
 
     if (i) {
-      await interaction.guild.members.cache
-        .get(interaction.options.getUser("representante").id)
-        .roles.add("939904131940900885")
-        .catch((err) => {
-          if (err) return 0;
-        });
+      user.roles.add("939904131940900885");
       i.reply({ content: "Parceria feita com sucesso." });
       const partner = i.fields.getTextInputValue("partnerInput");
       const embed = new discord.EmbedBuilder()

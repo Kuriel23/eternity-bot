@@ -28,7 +28,7 @@ module.exports = async (client, message) => {
         )
         .setColor(client.cor);
       const row = new discord.ActionRowBuilder().addComponents(
-        new discord.SelectMenuBuilder()
+        new discord.StringSelectMenuBuilder()
           .setCustomId("control")
           .setPlaceholder("Controle tudo imediatamente!")
           .addOptions({
