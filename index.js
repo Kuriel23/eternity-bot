@@ -16,7 +16,7 @@ const client = new discord.Client({
   },
 });
 
-client.cor = "#FFA500";
+client.cor = "#780803";
 client.db = new QuickDB();
 client.dbm = require("./database");
 client.canais = {
