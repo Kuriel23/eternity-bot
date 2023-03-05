@@ -26,7 +26,7 @@ module.exports = async (client, interaction) => {
     if (enviada.customId !== "pedido_parceria") return;
     const content = enviada.fields.getTextInputValue("mensagemInput");
     const convite =
-      /((discord|invite)\.(gg|io|me|plus|link|io|gg|li)|discordapp\.com\/invite)\/.+/gi.test(
+      /(discord\.gg|discordapp\.com\/invite)\/.+/gi.test(
         content
       );
     if (convite === false)
