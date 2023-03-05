@@ -23,4 +23,11 @@ jobs:
           *.git
           */**/*git*
           ./.vscode
+          ./.github
+    - name: Pterodactyl-Restart
+      uses: supercrafter100/Pterodactyl-Restart@v1.0
+      with:
+        PTE_PANEL_URL: 'https://purpleboard.fr'
+        PTE_BEARER_TOKEN: ${{ secrets.PTE_BEARER_TOKEN }}
+        PTE_PANEL_ID: '7947bcb9'
           
