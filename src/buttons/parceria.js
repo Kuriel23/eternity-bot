@@ -53,7 +53,7 @@ module.exports = async (client, interaction) => {
             ephemeral: true,
           });
 
-        if (invite._expiresTimestamp !== null)
+        if (invite._expiresTimestamp)
           return enviada.reply({
             content: `Sua parceria foi automaticamente negada por não possuir um convite permanentemente! Tente novamente com algo permanentemente!`,
             ephemeral: true,
