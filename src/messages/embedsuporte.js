@@ -17,7 +17,7 @@ module.exports = async (client, message) => {
       {
         author: {
           name: "Abra um ticket para atendimento!",
-          iconURL: "https://imgur.com/vOafXOj.gif",
+          iconURL: "https://imgur.com/i5q7IHO.gif",
         },
         description:
           "<:mugiwarasetr:980567123183157268> `Abra tickets para receber apoio`\n\n<:mugiwarasetr:980567123183157268> Seja atendido para **suporte** ou **denúncia**, clicando no **menu** abaixo\n\n<:mugiwarasetr:980567123183157268> **Não use o nosso sistema para brincadeiras, dessa forma terão que ser tomadas providências necessárias.**",
