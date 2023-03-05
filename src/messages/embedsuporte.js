@@ -2,7 +2,6 @@ const discord = require("discord.js");
 
 module.exports = async (client, message) => {
   message.delete();
-  if (message.author.id !== "354233941550694400") return 0;
   const menu = new discord.StringSelectMenuBuilder()
     .setCustomId("suporte")
     .setPlaceholder("Escolha 1 tópico")
