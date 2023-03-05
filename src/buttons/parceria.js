@@ -40,11 +40,11 @@ module.exports = async (client, interaction) => {
       new discord.ButtonBuilder().setCustomId("rp").setEmoji("❎").setStyle(4)
     );
     const inviteCodeRegexResult =
-      /((discord|invite)\.(gg|io|me|plus|5|io|gg)|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,32})/gi.exec(
+      /(discord\.gg|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,32})/gi.exec(
         content
       );
     const code = inviteCodeRegexResult && inviteCodeRegexResult[4];
-    await client
+    client
       .fetchInvite(code)
       .then((invite) => {
         if (invite.memberCount < 150)
@@ -66,7 +66,7 @@ module.exports = async (client, interaction) => {
           }> <@&940072769624875119>`,
           components: [row],
         });
-        enviada.reply({
+        return enviada.reply({
           content: "Seu pedido de parceria foi enviado para análise!",
           ephemeral: true,
         });
