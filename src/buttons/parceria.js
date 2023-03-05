@@ -29,7 +29,7 @@ module.exports = async (client, interaction) => {
       /(discord\.gg|discordapp\.com\/invite)\/.+/gi.test(
         content
       );
-    if (convite === false)
+    if (!convite)
       return enviada.reply({
         content:
           "Sua parceria foi automaticamente negada por não possuir um convite válido! Tente novamente com um convite!",
