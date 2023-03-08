@@ -38,10 +38,43 @@ module.exports = async (client) => {
       await not.save();
     }
   }
+
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
   );
 
+  async function memberCount() {
+    const guild = client.guilds.cache.get("987466194112086076");
+    const emojis = [
+      "<a:number1_ae:1083168528569479218>",
+      "<a:number2_ae:1083168556964909187>",
+      "<a:number3_ae:1083168552099524688>",
+      "<a:number4_ae:1083168547129278585>",
+      "<a:number5_ae:1083168541722808420>",
+      "<a:number6_ae:1083168561624793108>",
+      "<a:number7_ae:1083168532738609203>",
+      "<a:number8_ae:1083168536685449296>",
+      "<a:number9_ae:1083168564623716422>",
+      "<a:number0_ae:1083168569556221972>",
+    ];
+    const numeros = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+    const numero = guild.memberCount;
+    const array = numero.toString().split("");
+    let x = "";
+    for (let i = 0; i < array.length; i++) {
+      const index = numeros.indexOf(array[i]);
+      x = x + emojis[index];
+    }
+    guild.channels.cache
+      .get("675087693474168864")
+      .setTopic(
+        `**__<a:hello_etr:1035697482002346004>Atualmente temos ${x} Membros no 永遠 Anime's Eternity #10k__**`,
+        "Contador de membros"
+      );
+  }
+
+  setInterval(memberCount(), 300000);
+  memberCount();
   const commands = [];
 
   for (const file of commandFiles) {
