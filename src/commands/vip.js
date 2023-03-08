@@ -30,6 +30,12 @@ module.exports = {
             )
             .setRequired(true)
         )
+        .addBooleanOption((option) =>
+          option
+            .setName("permanente")
+            .setDescription("Vip permanente?")
+            .setRequired(false)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -123,6 +129,7 @@ module.exports = {
       case "register": {
         const pessoa = interaction.options.getUser("usuário");
         const vip = interaction.options.getString("vip");
+        const permanent = interaction.options.getBoolean("permanente");
 
         if (!interaction.member.permissions.has("BanMembers"))
           return interaction.reply({
@@ -135,11 +142,12 @@ module.exports = {
           const _date = new Date();
           _date.setMonth(_date.getMonth() + 1);
           const date = new Date(_date);
-          doc.vipschedule.push({
-            _id: pessoa.id,
-            vip,
-            schedule: date,
-          });
+          if (!permanent)
+            doc.vipschedule.push({
+              _id: pessoa.id,
+              vip,
+              schedule: date,
+            });
           doc.save();
 
           const cargo = vip
@@ -153,11 +161,13 @@ module.exports = {
 
           interaction.reply({ content: "Registrado com sucesso." });
 
-          schedule.scheduleJob(date, function () {
-            person.roles.remove(cargo);
-            doc.vipschedule.pull({ _id: pessoa.id });
-            doc.save();
-          });
+          if (!permanent) {
+            schedule.scheduleJob(date, function () {
+              person.roles.remove(cargo);
+              doc.vipschedule.pull({ _id: pessoa.id });
+              doc.save();
+            });
+          }
         }
         break;
       }
