@@ -44,7 +44,7 @@ module.exports = async (client) => {
   );
 
   async function memberCount() {
-    const guild = await client.guilds.fetch("987466194112086076");
+    const guild = client.guilds.cache.get("936656115524042823");
     const emojis = [
       "<a:number1_ae:1083168528569479218>",
       "<a:number2_ae:1083168556964909187>",
