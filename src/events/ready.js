@@ -31,7 +31,7 @@ module.exports = async (client) => {
           const person = client.guilds.cache
             .get("936656115524042823")
             .members.cache.get(partner._id);
-          person.roles.remove("939904131940900885");
+          if (person) person.roles.remove("939904131940900885");
           not.partnerschedule.pull({ _id: partner._id });
         });
       });
