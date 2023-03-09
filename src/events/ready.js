@@ -66,7 +66,7 @@ module.exports = async (client) => {
       x = x + emojis[index];
     }
     guild.channels.cache
-      .get("675087693474168864")
+      .get("936678638324170762")
       .setTopic(
         `**__<a:hello_etr:1035697482002346004>Atualmente temos ${x} Membros no 永遠 Anime's Eternity #10k__**`,
         "Contador de membros"
