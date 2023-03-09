@@ -22,7 +22,7 @@ module.exports = async (client) => {
           const person = client.guilds.cache
             .get("936656115524042823")
             .members.cache.get(vips._id);
-          person.roles.remove(cargo);
+          if (person) person.roles.remove(cargo);
           not.vipschedule.pull({ _id: vips._id });
         });
       });
