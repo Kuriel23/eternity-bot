@@ -73,7 +73,7 @@ module.exports = async (client) => {
       );
   }
 
-  setInterval(memberCount(), 300000);
+  setInterval(memberCount, 300000);
   memberCount();
   const commands = [];
 
