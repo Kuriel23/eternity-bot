@@ -46,20 +46,27 @@ module.exports = {
           "O tempo que foi dado não é válido. Você deve usar d para dias, h para horas e m para minutos.",
       });
     await member.timeout(time, reason).catch((error) => {
-      if (error) return interaction.reply({
-        content: "É impossível realizar tal ação contra este usuário.",
-      });
+      if (error)
+        return interaction.reply({
+          content: "É impossível realizar tal ação contra este usuário.",
+        });
     });
     const embban = new discord.EmbedBuilder()
       .setTitle(member.user.tag + " | Mute")
       .setColor(client.cor)
-      .addField("Usuário", `${member.user.tag} (${member.id})`, true)
-      .addField(
-        "Moderador",
-        `${interaction.member.tag} (${interaction.member.id})`,
-        true
-      )
-      .addField("Tempo", ms(time, { long: true }), true);
+      .addFields(
+        {
+          name: "Usuário",
+          value: `${member.user.tag} (${member.id})`,
+          inline: true,
+        },
+        {
+          name: "Moderador",
+          value: `${interaction.member.tag} (${interaction.member.id})`,
+          inline: true,
+        },
+        { name: "Tempo", value: ms(time, { long: true }), inline: true }
+      );
     client.channels.cache.get("944721146971033650").send({ embeds: [embban] });
     return interaction.reply({
       content: `${member} foi mutado por ${ms(time, { long: true })}`,
