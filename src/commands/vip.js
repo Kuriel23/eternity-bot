@@ -201,7 +201,7 @@ module.exports = {
           })
           .then(async (role) => {
             interaction.member.roles.add(role);
-            const doc = await client.db.Users.findOne({
+            const doc = await client.dbm.Users.findOne({
               _id: interaction.member.id,
             });
 
@@ -209,7 +209,7 @@ module.exports = {
               doc.vips.roleid = role.id;
               doc.save();
             } else {
-              new client.db.Users({
+              new client.dbm.Users({
                 _id: interaction.member.id,
                 vips: { roleid: role.id },
               }).save();
