@@ -103,7 +103,7 @@ module.exports = {
           _id: interaction.member.id,
         });
         if (doc) {
-          if (doc.vips.roleid !== "")
+          if (!doc.vips.roleid || doc.vips.roleid === "") 
             return interaction.reply({
               content:
                 "Parece que não sei qual o id do seu cargo de vip, uma ação manual foi acionada para esse seu cargo.",
