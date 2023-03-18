@@ -58,7 +58,8 @@ module.exports = {
             .setName("hex")
             .setDescription("Defina um código Hex (Ex: #000000)")
             .setRequired(false)
-        
+        )
+    )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("share_role")
@@ -87,7 +88,7 @@ module.exports = {
           _id: interaction.member.id,
         });
         if (doc) {
-          if (!doc.vips.roleid || doc.vips.roleid === "") 
+          if (!doc.vips.roleid || doc.vips.roleid === "")
             return interaction.reply({
               content:
                 "Parece que não sei qual o id do seu cargo de vip, uma ação manual foi acionada para esse seu cargo.",
@@ -135,7 +136,7 @@ module.exports = {
           doc.save();
 
           const cargo = vip
-             .replace("Eternity family", "962461093446422559")
+            .replace("Eternity family", "962461093446422559")
             .replace("Shinigami", "937040032718536734")
             .replace("Hunter", "937040400126984242")
             .replace("Slayer", "937039457457160322")
