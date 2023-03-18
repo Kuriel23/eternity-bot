@@ -23,6 +23,7 @@ module.exports = {
             .setName("vip")
             .setDescription("Identifique o cargo de vip")
             .addChoices(
+              { name: "Eternity family", value: "Eternity family" },
               { name: "Shinigami", value: "Shinigami" },
               { name: "Hunter", value: "Hunter" },
               { name: "Slayer", value: "Slayer" },
@@ -57,24 +58,7 @@ module.exports = {
             .setName("hex")
             .setDescription("Defina um código Hex (Ex: #000000)")
             .setRequired(false)
-        )
-    )
-    .addSubcommand((subcommand) =>
-      subcommand
-        .setName("create_channel")
-        .setNameLocalizations({
-          "pt-BR": "criar_canal",
-          "en-US": "create_channel",
-        })
-        .setDescription("Crie um canal de voz")
-        .addStringOption((option) =>
-          option
-            .setName("nome")
-            .setNameLocalizations({ "en-US": "name", "pt-BR": "nome" })
-            .setDescription("Defina um nome ao seu canal")
-            .setRequired(true)
-        )
-    )
+        
     .addSubcommand((subcommand) =>
       subcommand
         .setName("share_role")
@@ -151,6 +135,7 @@ module.exports = {
           doc.save();
 
           const cargo = vip
+             .replace("Eternity family", "962461093446422559")
             .replace("Shinigami", "937040032718536734")
             .replace("Hunter", "937040400126984242")
             .replace("Slayer", "937039457457160322")
