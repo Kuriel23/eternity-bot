@@ -16,6 +16,31 @@ module.exports = async (client, message) => {
       return message.reply(err);
     });
 
+  if (
+    message.content.includes(`<@${client.user.id}>`) ||
+    (replied !== null ? replied.author.id === client.user.id : 0)
+  ) {
+    const youchatwrapper = require("@codernocook/youchatwrapper");
+    youchatwrapper.cloudflare_message_bypass = true;
+    youchatwrapper.cloudflare_retry_limit = 5;
+    youchatwrapper.apiKey = "FPWETB472RRB9L67U32US47RBW1D5Y0GH8M";
+    youchatwrapper.retry = true;
+    youchatwrapper.retry_limit = 3;
+
+    youchatwrapper.chat(
+      "responde-me em português! " +
+        message.content.replace(`<@${client.user.id}>`, ""),
+      function (callback) {
+        message.reply(
+          callback
+            .replace("@everyone", "everyone")
+            .replace("@here", "here")
+            .replace("you.com", "Animes Eternity")
+        );
+      }
+    );
+  }
+
   if (message.guild.id === process.env.GUILD_ID) {
     if (
       message.member &&

@@ -5,6 +5,7 @@
     "start": "node ."
   },
   "dependencies": {
+    "@codernocook/youchatwrapper": "^1.1.6",
     "@discordjs/rest": "^1.3.0",
     "better-sqlite3": "^8.1.0",
     "chalk-advanced": "^1.0.3",
