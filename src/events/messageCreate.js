@@ -16,6 +16,11 @@ module.exports = async (client, message) => {
       return message.reply(err);
     });
 
+  const replied =
+    message.reference !== null
+      ? await message.channel.messages.fetch(message.reference.messageId)
+      : null;
+
   if (
     message.content.includes(`<@${client.user.id}>`) ||
     (replied !== null ? replied.author.id === client.user.id : 0)
