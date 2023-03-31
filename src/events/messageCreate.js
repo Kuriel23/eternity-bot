@@ -36,6 +36,7 @@ module.exports = async (client, message) => {
             .replace("@everyone", "everyone")
             .replace("@here", "here")
             .replace("you.com", "Animes Eternity")
+            .replace("You.com", "Animes Eternity")
         );
       }
     );
