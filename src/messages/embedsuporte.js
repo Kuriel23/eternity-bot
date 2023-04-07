@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
         },
         description:
           "<:mugiwarasetr:980567123183157268> `Abra tickets para receber apoio`\n\n<:mugiwarasetr:980567123183157268> Seja atendido para **suporte** ou **denúncia**, clicando no **menu** abaixo\n\n<:mugiwarasetr:980567123183157268> **Não use o nosso sistema para brincadeiras, dessa forma terão que ser tomadas providências necessárias.**",
-        color: parseInt(client.cor.slice(1), 16),
+        color: parseInt("#000000".slice(1), 16),
         footer: {
           text: "©️ 永遠 Anime's Eternity Todos os direitos reservados.",
         },
