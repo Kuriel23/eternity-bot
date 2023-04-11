@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
           url: "https://i.imgur.com/EQQ0rHX.jpg",
         },
         footer: {
-          text: " 2023 ©️  永遠 Anime's Eternity Todos os direitos reservados.",
+          text: "©️ 2023 Anime's Eternity Todos os direitos reservados.",
         },
       },
     ],
