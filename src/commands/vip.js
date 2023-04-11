@@ -40,6 +40,19 @@ module.exports = {
     )
     .addSubcommand((subcommand) =>
       subcommand
+        .setName("remove_vip")
+        .setNameLocalizations({ "pt-BR": "remover_vip", "en-US": "remove_vip" })
+        .setDescription("Remova o vip de alguém")
+        .addUserOption((option) =>
+          option
+            .setName("usuário")
+            .setNameLocalizations({ "pt-BR": "usuário", "en-US": "user" })
+            .setDescription("Identifique o utilizador")
+            .setRequired(true)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
         .setName("create_role")
         .setNameLocalizations({
           "pt-BR": "criar_cargo",
@@ -154,6 +167,34 @@ module.exports = {
               doc.save();
             });
           }
+        }
+        break;
+      }
+      case "remove_vip": {
+        const pessoa = interaction.options.getUser("usuário");
+
+        if (!interaction.member.permissions.has("BanMembers"))
+          return interaction.reply({
+            content: "Você não está permitido a retirar usuários como VIP's.",
+            ephemeral: true,
+          });
+
+        const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+        if (doc) {
+          const cargo = vip
+            .replace("Eternity family", "962461093446422559")
+            .replace("Shinigami", "937040032718536734")
+            .replace("Hunter", "937040400126984242")
+            .replace("Slayer", "937039457457160322")
+            .replace("Death Note", "937041568299368508");
+
+          const person = interaction.guild.members.cache.get(pessoa.id);
+
+          interaction.reply({ content: "Retirado com sucesso." });
+
+          person.roles.remove(cargo);
+          doc.vipschedule.pull({ _id: pessoa.id });
+          doc.save();
         }
         break;
       }
