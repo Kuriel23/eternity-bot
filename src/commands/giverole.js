@@ -7,7 +7,7 @@ module.exports = {
       "pt-BR": "dar_cargo",
       "en-US": "giverole",
     })
-    .setDescription("Alguém mereceu levar uma martelada!")
+    .setDescription("Ofereça um cargo!")
     .setDefaultMemberPermissions(discord.PermissionFlagsBits.ManageRoles)
     .addUserOption((option) =>
       option
