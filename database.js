@@ -77,6 +77,13 @@ const userSchema = new Schema({
   },
 });
 
+const questionSchema = new Schema({
+  _id: { type: String, required: true },
+  answer: String,
+  difficulty: String,
+});
+
 module.exports.Staffs = model("Staffs", staffsSchema);
 module.exports.Guilds = model("Guilds", guildSchema);
 module.exports.Users = model("Users", userSchema);
+module.exports.Questions = model("Questions", questionSchema);
