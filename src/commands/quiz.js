@@ -1,5 +1,4 @@
 const discord = require("discord.js");
-const schedule = require("node-schedule");
 
 module.exports = {
   data: new discord.SlashCommandBuilder()
