@@ -26,6 +26,13 @@ const guildSchema = new Schema({
       schedule: Date,
     },
   ],
+  roleschedule: [
+    {
+      _id: String,
+      role: String,
+      schedule: Date,
+    },
+  ],
   partnerschedule: [
     {
       _id: String,
