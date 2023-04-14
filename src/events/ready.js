@@ -12,7 +12,7 @@ module.exports = async (client) => {
     const not = await client.dbm.Guilds.findOne({ _id: "1" });
     if (not) {
       not.vipschedule.forEach((vips) => {
-        schedule.scheduleJob(vips.schedule, function () {
+        schedule.scheduleJob(vips.schedule, async function () {
           const cargo = vips.vip
             .replace("Shinigami", "937040032718536734")
             .replace("Hunter", "937040400126984242")
@@ -23,19 +23,39 @@ module.exports = async (client) => {
             .get("936656115524042823")
             .members.cache.get(vips._id);
           if (person) person.roles.remove(cargo);
-          not.vipschedule.pull({ _id: vips._id });
+          await client.dbm.Guilds.findOneAndUpdate(
+            { _id: "1" },
+            { $pull: { vipschedule: { _id: vips._id } } },
+            { new: true }
+          );
         });
       });
       not.partnerschedule.forEach((partner) => {
-        schedule.scheduleJob(partner.schedule, function () {
+        schedule.scheduleJob(partner.schedule, async function () {
           const person = client.guilds.cache
             .get("936656115524042823")
             .members.cache.get(partner._id);
           if (person) person.roles.remove("939904131940900885");
-          not.partnerschedule.pull({ _id: partner._id });
+          await client.dbm.Guilds.findOneAndUpdate(
+            { _id: "1" },
+            { $pull: { partnerschedule: { _id: partner._id } } },
+            { new: true }
+          );
         });
       });
-      await not.save();
+      not.roleschedule.forEach((role) => {
+        schedule.scheduleJob(role.schedule, async function () {
+          const person = client.guilds.cache
+            .get("936656115524042823")
+            .members.cache.get(role._id);
+          if (person) person.roles.remove(role.role);
+          await client.dbm.Guilds.findOneAndUpdate(
+            { _id: "1" },
+            { $pull: { roleschedule: { _id: role._id } } },
+            { new: true }
+          );
+        });
+      });
     }
   }
 
