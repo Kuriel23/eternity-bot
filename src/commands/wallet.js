@@ -23,7 +23,7 @@ module.exports = {
         content: `${user.user.tag} têm atualmente ${user.coins || 0} moedas.`,
       });
     } else {
-      client.dbm.Users({ _id: user.user.id }).save();
+      new client.dbm.Users({ _id: user.user.id }).save();
       return interaction.reply({
         content: `${user.user.tag} foi registrado no banco de dados com sucesso!`,
       });
