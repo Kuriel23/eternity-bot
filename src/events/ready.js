@@ -59,7 +59,7 @@ module.exports = async (client) => {
     }
   }
 
-  schedule.scheduleJob("* */1 * * *", async function () {
+  schedule.scheduleJob("0 */1 * * *", async function () {
     const totalDocumentos = await client.dbm.Questions.countDocuments();
 
     const numeroAleatorio = Math.floor(Math.random() * totalDocumentos);
