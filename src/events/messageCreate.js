@@ -47,10 +47,8 @@ module.exports = async (client, message) => {
             if (callback.length < 500 || message.channel.isThread())
               msg.edit({
                 content: callback
-                  .replace("@everyone", "everyone")
-                  .replace("@here", "here")
-                  .replace("you.com", "Animes Eternity")
-                  .replace("You.com", "Animes Eternity"),
+                  .replace(/@(everyone|here)/g, "-")
+                  .replace(/You?\.com/g, "Animes Eternity"),
               });
             else {
               const chars =
@@ -69,10 +67,8 @@ module.exports = async (client, message) => {
                 .then((thread) =>
                   thread.send({
                     content: callback
-                      .replace("@everyone", "everyone")
-                      .replace("@here", "here")
-                      .replace("you.com", "Animes Eternity")
-                      .replace("You.com", "Animes Eternity"),
+                      .replace(/@(everyone|here)/g, "-")
+                      .replace(/You?\.com/g, "Animes Eternity"),
                   })
                 );
             }
