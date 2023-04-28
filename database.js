@@ -75,6 +75,7 @@ const userSchema = new Schema({
     rolelimit: { type: Number, default: 0 },
     channelimit: { type: Number, default: 0 },
   },
+  coins: Number,
 });
 
 const questionSchema = new Schema({

@@ -59,6 +59,54 @@ module.exports = async (client) => {
     }
   }
 
+  schedule.scheduleJob("* */1 * * *", async function () {
+    const totalDocumentos = await client.dbm.Questions.countDocuments();
+
+    const numeroAleatorio = Math.floor(Math.random() * totalDocumentos);
+
+    const doc = await client.dbm.Questions.findOne()
+      .skip(numeroAleatorio)
+      .limit(1);
+    if (!doc) return 0;
+    client.channels.cache
+      .get("936678638324170762")
+      .send({
+        content: `# ${doc._id}\n\n* Pergunta de nível ${difficulty
+          .replace("Easy", "Fácil")
+          .replace("Medium", "Médio")
+          .replace("Hard", "Difícil")}`,
+      })
+      .then((msg) => {
+        const collectorFilter = (response) => {
+          return doc.answer.toLowerCase() === response.content.toLowerCase();
+        };
+        msg.channel
+          .awaitMessages({
+            filter: collectorFilter,
+            max: 1,
+            time: 300000,
+            errors: ["time"],
+          })
+          .then(async (collected) => {
+            collected.reply(
+              `Acertou a resposta! Obrigado pela participação de todos.`
+            );
+            const docuser = await client.dbm.Users.findOne({
+              _id: collected.first().author.id,
+            });
+            if (docuser) {
+              docuser.coins += 10;
+              docuser.save();
+            } else client.dbm.Users({ _id: collected.first().author.id, coins: 10 });
+          })
+          .catch(() => {
+            client.channels.cache
+              .get("936678638324170762")
+              .send("Parece que ninguém acertou a tempo.");
+          });
+      });
+  });
+
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
   );
