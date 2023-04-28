@@ -97,7 +97,7 @@ module.exports = async (client) => {
             if (docuser) {
               docuser.coins += 10;
               docuser.save();
-            } else client.dbm.Users({ _id: collected.first().author.id, coins: 10 });
+            } else client.dbm.Users({ _id: collected.first().author.id, coins: 10 }).save();
           })
           .catch(() => {
             client.channels.cache
