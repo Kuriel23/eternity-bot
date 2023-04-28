@@ -71,7 +71,7 @@ module.exports = async (client) => {
     client.channels.cache
       .get("936678638324170762")
       .send({
-        content: `# ${doc._id}\n\n* Pergunta de nível ${difficulty
+        content: `# ${doc._id}\n\n* Pergunta de nível ${doc.difficulty
           .replace("Easy", "Fácil")
           .replace("Medium", "Médio")
           .replace("Hard", "Difícil")}`,
