@@ -20,7 +20,7 @@ module.exports = async (client, interaction) => {
     let code = message.content;
 
     const nocode = new discord.EmbedBuilder()
-      .setAuthor({ name: "» Digite algum código", iconURL: client.warn })
+      .setTitle("Digite algum código")
       .setColor(client.cor);
     if (!code) return message.channel.send({ embeds: [nocode] });
     const user = (id) => client.users.cache.find((user) => user.id === id);
