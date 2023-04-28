@@ -30,10 +30,9 @@ module.exports = async (client, interaction) => {
 
     if (message.content.includes("token")) {
       const wd = new discord.EmbedBuilder()
-        .setAuthor({
-          name: "» [Watch Dogs] ESTE BOT ESTÁ PROTEGIDO COM SISTEMA WATCH DOGS!",
-          iconURL: client.err,
-        })
+        .setTitle(
+          "[Watch Dogs] ESTE BOT ESTÁ PROTEGIDO COM SISTEMA WATCH DOGS!"
+        )
         .setColor(client.cor);
       return message.reply({ embeds: [wd] });
     }
