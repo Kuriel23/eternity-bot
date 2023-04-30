@@ -77,12 +77,11 @@ module.exports = async (client) => {
           .replace("Hard", "Difícil")}`,
       })
       .then((msg) => {
-        const collectorFilter = (response) => {
-          return doc.answer.toLowerCase() === response.content.toLowerCase();
-        };
         msg.channel
           .awaitMessages({
-            filter: collectorFilter,
+            filter: (message) => {
+              return doc.answer.toLowerCase() === message.content.toLowerCase();
+            },
             max: 1,
             time: 300000,
             errors: ["time"],
@@ -97,7 +96,11 @@ module.exports = async (client) => {
             if (docuser) {
               docuser.coins += 10;
               docuser.save();
-            } else new client.dbm.Users({ _id: collected.first().author.id, coins: 10 }).save();
+            } else
+              new client.dbm.Users({
+                _id: collected.first().author.id,
+                coins: 10,
+              }).save();
           })
           .catch(() => {
             client.channels.cache
