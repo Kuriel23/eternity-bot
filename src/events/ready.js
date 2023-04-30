@@ -102,10 +102,8 @@ module.exports = async (client) => {
                 coins: 10,
               }).save();
           })
-          .catch(() => {
-            client.channels.cache
-              .get("936678638324170762")
-              .send("Parece que ninguém acertou a tempo.");
+          .catch((collected) => {
+            msg.reply("Parece que ninguém acertou a tempo.");
           });
       });
   });
