@@ -59,8 +59,8 @@ module.exports = async (client) => {
     }
   }
 
-  schedule.scheduleJob("0 */1 * * *", async function () {
-    const totalDocumentos = await client.dbm.Questions.countDocuments();
+  // schedule.scheduleJob("0 */1 * * *", async function () {
+  /*  const totalDocumentos = await client.dbm.Questions.countDocuments();
 
     const numeroAleatorio = Math.floor(Math.random() * totalDocumentos);
 
@@ -106,7 +106,7 @@ module.exports = async (client) => {
             msg.reply("Parece que ninguém acertou a tempo.");
           });
       });
-  });
+  }); */
 
   const commandFiles = readdirSync("./src/commands/").filter((file) =>
     file.endsWith(".js")
