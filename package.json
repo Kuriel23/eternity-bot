@@ -7,6 +7,7 @@
   "dependencies": {
     "@codernocook/youchatwrapper": "^1.1.6",
     "@discordjs/rest": "^1.7.1",
+    "better-sqlite3": "^8.3.0",
     "chalk-advanced": "^1.0.3",
     "discord-api-types": "^0.37.40",
     "discord.js": "^14.11.0",
