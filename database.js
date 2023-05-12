@@ -1,7 +1,7 @@
 const { connect, Schema, model, set } = require("mongoose");
 const { ChalkAdvanced } = require("chalk-advanced");
 set("strictQuery", true);
-connect(process.env.db, {})
+connect(process.env.DB, {})
   .then(() =>
     console.log(
       `${ChalkAdvanced.gray(">")} ${ChalkAdvanced.green(
