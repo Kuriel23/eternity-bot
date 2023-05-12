@@ -160,13 +160,12 @@ module.exports = {
 
           interaction.reply({ content: "Registrado com sucesso." });
 
-          if (!permanent) {
+          if (!permanent)
             schedule.scheduleJob(date, function () {
               person.roles.remove(cargo);
               doc.vipschedule.pull({ _id: pessoa.id });
               doc.save();
             });
-          }
         }
         break;
       }
