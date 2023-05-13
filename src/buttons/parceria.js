@@ -25,10 +25,7 @@ module.exports = async (client, interaction) => {
   if (enviada) {
     if (enviada.customId !== "pedido_parceria") return;
     const content = enviada.fields.getTextInputValue("mensagemInput");
-    const convite =
-      /(discord\.gg|discordapp\.com\/invite)\/.+/gi.test(
-        content
-      );
+    const convite = /(discord\.gg|discordapp\.com\/invite)\/.+/gi.test(content);
     if (!convite)
       return enviada.reply({
         content:
@@ -36,11 +33,17 @@ module.exports = async (client, interaction) => {
         ephemeral: true,
       });
     const row = new discord.ActionRowBuilder().addComponents(
-      new discord.ButtonBuilder().setCustomId("ap").setEmoji("✅").setStyle(discord.ButtonStyle.Success),
-      new discord.ButtonBuilder().setCustomId("rp").setEmoji("❎").setStyle(discord.ButtonStyle.Danger)
+      new discord.ButtonBuilder()
+        .setCustomId("ap")
+        .setEmoji("✅")
+        .setStyle(discord.ButtonStyle.Success),
+      new discord.ButtonBuilder()
+        .setCustomId("rp")
+        .setEmoji("❎")
+        .setStyle(discord.ButtonStyle.Danger)
     );
     const inviteCodeRegexResult =
-      /(discord\.gg|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,70})/gi.exec(
+      /((discord|invite)\.(gg|io|me|plus|5|io|gg)|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,70})/gi.exec(
         content
       );
     const code = inviteCodeRegexResult && inviteCodeRegexResult[4];
