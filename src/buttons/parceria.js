@@ -36,8 +36,8 @@ module.exports = async (client, interaction) => {
         ephemeral: true,
       });
     const row = new discord.ActionRowBuilder().addComponents(
-      new discord.ButtonBuilder().setCustomId("ap").setEmoji("✅").setStyle(3),
-      new discord.ButtonBuilder().setCustomId("rp").setEmoji("❎").setStyle(4)
+      new discord.ButtonBuilder().setCustomId("ap").setEmoji("✅").setStyle(discord.ButtonStyle.Success),
+      new discord.ButtonBuilder().setCustomId("rp").setEmoji("❎").setStyle(discord.ButtonStyle.Danger)
     );
     const inviteCodeRegexResult =
       /(discord\.gg|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,70})/gi.exec(
