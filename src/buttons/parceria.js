@@ -40,7 +40,7 @@ module.exports = async (client, interaction) => {
       new discord.ButtonBuilder().setCustomId("rp").setEmoji("❎").setStyle(4)
     );
     const inviteCodeRegexResult =
-      /(discord\.gg|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,32})/gi.exec(
+      /(discord\.gg|discordapp\.com\/invite)\/?([a-zA-Z0-9-]{2,70})/gi.exec(
         content
       );
     const code = inviteCodeRegexResult && inviteCodeRegexResult[4];
