@@ -16,7 +16,8 @@
     "mongoose": "^7.1.0",
     "ms-pt-br": "^2.1.4",
     "node-schedule": "^2.1.1",
-    "quick.db": "^9.1.4"
+    "quick.db": "^9.1.4",
+    "superagent": "^8.0.9"
   },
   "devDependencies": {
     "eslint": "^8.40.0",
