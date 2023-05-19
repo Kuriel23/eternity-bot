@@ -180,12 +180,16 @@ module.exports = {
 
         const doc = await client.dbm.Guilds.findOne({ _id: "1" });
         if (doc) {
-          const cargo = doc.vipschedule.vip
-            .replace("Eternity family", "962461093446422559")
-            .replace("Shinigami", "937040032718536734")
-            .replace("Hunter", "937040400126984242")
-            .replace("Slayer", "937039457457160322")
-            .replace("Death Note", "937041568299368508");
+          const cargo = interaction.guild.roles.cache.find(
+            (r) =>
+              r.id ===
+              doc.vipschedule.vip
+                .replace("Eternity family", "962461093446422559")
+                .replace("Shinigami", "937040032718536734")
+                .replace("Hunter", "937040400126984242")
+                .replace("Slayer", "937039457457160322")
+                .replace("Death Note", "937041568299368508")
+          );
 
           const person = interaction.guild.members.cache.get(pessoa.id);
 
