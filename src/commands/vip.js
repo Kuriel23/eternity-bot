@@ -195,7 +195,7 @@ module.exports = {
 				break;
 			}
 			case "remove_vip": {
-				const pessoa = interaction.options.getUser("usuário");
+				const pessoa = interaction.options.getUser("usuário").id;
 
 				if (!interaction.member.permissions.has("BanMembers"))
 					return interaction.reply({
@@ -204,7 +204,9 @@ module.exports = {
 						ephemeral: true,
 					});
 
-				const doc = await client.dbm.Guilds.findOne({ _id: "1" });
+				const doc = await client.dbm.Guilds.findOne({
+					_id: "1",
+				}).vipschedule.id(pessoa);
 				if (doc) {
 					const cargo = interaction.guild.roles.cache.find(
 						(r) =>
@@ -221,13 +223,13 @@ module.exports = {
 					);
 
 					const person = interaction.guild.members.cache.get(
-						pessoa.id
+						pessoa
 					);
 
 					interaction.reply({ content: "Retirado com sucesso." });
 
 					person.roles.remove(cargo);
-					doc.vipschedule.pull({ _id: pessoa.id });
+					doc.vipschedule.pull({ _id: pessoa });
 					doc.save();
 				}
 				break;
