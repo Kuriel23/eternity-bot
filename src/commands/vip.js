@@ -204,14 +204,15 @@ module.exports = {
 						ephemeral: true,
 					});
 
-				const doc = await client.dbm.Guilds.findOne({
-					_id: "1",
-				}).vipschedule.id(pessoa);
+				const doc = await client.dbm.Guilds.findOne(
+					{ vipschedule: { $elemMatch: { _id: pessoa } } },
+					{ userId: 1, "vipschedule.$": 1 }
+				);
 				if (doc) {
 					const cargo = interaction.guild.roles.cache.find(
 						(r) =>
 							r.id ===
-							doc.vipschedule.vip
+							doc.vipschedule[0].vip
 								.replace(
 									"Eternity family",
 									"962461093446422559"
@@ -222,9 +223,7 @@ module.exports = {
 								.replace("Death Note", "937041568299368508")
 					);
 
-					const person = interaction.guild.members.cache.get(
-						pessoa
-					);
+					const person = interaction.guild.members.cache.get(pessoa);
 
 					interaction.reply({ content: "Retirado com sucesso." });
 
