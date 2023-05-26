@@ -17,14 +17,15 @@ module.exports = async (client, member) => {
 			)
 			.end((err, callback) => {
 				if (err) return 0;
-				const callbackRes = callback._body.generated_text
-					.replace("&lt;", "<")
-					.replace("&gt;", ">")
-					.replace(/@(everyone|here)/g, "")
-					.match(/"([^"]*)"/g)[0];
+				const callbackRes =
+					callback._body.generated_text.match(/"([^"]*)"/g)[0];
 				if (callbackRes.length > 0)
 					client.channels.cache.get("936678638324170762").send({
-						content: callbackRes,
+						content: callbackRes
+							.replace("&lt;", "<")
+							.replace("&gt;", ">")
+							.replace(/@(everyone|here)/g, "")
+							.replace(/"([^"]*)"/g, ""),
 					});
 			});
 	}
