@@ -5,7 +5,7 @@ module.exports = async (client, interaction) => {
   const tagger = interaction.user.tag;
   if (interaction.guild.channels.cache.find((c) => c.name === `${tagger}`)) {
     const c = interaction.guild.channels.cache.find(
-      (c) => c.name === `${tagger}-clinica`
+      (c) => c.name === `${tagger}-mudae`
     );
     interaction.reply({
       content: `Você já possui um ticket aberto em ${c}.`,
