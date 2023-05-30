@@ -15,10 +15,7 @@ module.exports = async (client, message) => {
   message.channel.send({
     embeds: [
       {
-        author: {
-          name: "Abra um ticket para atendimento!",
-          iconURL: "",
-        },
+        title: "Abra um ticket para atendimento!",
         description:
           "<:mugiwarasetr:980567123183157268> `Abra tickets para receber apoio`\n\n<:mugiwarasetr:980567123183157268> Seja atendido para **suporte** ou **denúncia**, clicando no **menu** abaixo\n\n<:mugiwarasetr:980567123183157268> **Não use o nosso sistema para brincadeiras, dessa forma terão que ser tomadas providências necessárias.**",
         color: parseInt("#d65e9a".slice(1), 16),
