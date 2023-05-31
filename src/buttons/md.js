@@ -32,7 +32,7 @@ module.exports = async (client, interaction) => {
             ],
           },
           {
-            id: "1020139519850336338",
+            id: "1000471228903067699",
             allow: [
               PermissionFlagsBits.ViewChannel,
               PermissionFlagsBits.SendMessages,
