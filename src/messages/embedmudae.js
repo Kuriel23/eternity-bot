@@ -3,7 +3,7 @@ const discord = require("discord.js");
 module.exports = async (client, message) => {
   message.delete();
   const menu = new discord.StringSelectMenuBuilder()
-    .setCustomId("suporte")
+    .setCustomId("mudae")
     .setPlaceholder("Escolha 1 tópico")
     .setMaxValues(1)
     .addOptions(
