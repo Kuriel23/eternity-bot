@@ -5,7 +5,7 @@ module.exports = async (client, interaction) => {
   const tagger = interaction.user.tag;
   if (interaction.guild.channels.cache.find((c) => c.name === `${tagger}`)) {
     const c = interaction.guild.channels.cache.find(
-      (c) => c.name === `${tagger}-md`
+      (c) => c.name === `${tagger}-mudae`
     );
     interaction.reply({
       content: `Você já possui um ticket aberto em ${c}.`,
@@ -14,7 +14,7 @@ module.exports = async (client, interaction) => {
   } else {
     interaction.guild.channels
       .create({
-        name: `${tagger}-md`,
+        name: `${tagger}-mudae`,
         type: 0,
         parent: "937014237082038333",
         permissionOverwrites: [
