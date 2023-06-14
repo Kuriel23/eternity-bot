@@ -54,7 +54,7 @@ module.exports = {
       const embed = new discord.EmbedBuilder()
         .setColor(client.cor)
         .setTitle("Nova Parceria!")
-        .setImage("https://i.imgur.com/R3b9YGf.png")
+        .setImage("https://i.imgur.com/GoQsrn2.png")
         .setDescription(
           `Agradecemos pela nova parceria!!!\nRepresentante ${
             interaction.member
