@@ -93,6 +93,21 @@ module.exports = {
 		)
 		.addSubcommand((subcommand) =>
 			subcommand
+				.setName("info")
+				.setDescription("Veja o registro de alguém")
+				.addUserOption((option) =>
+					option
+						.setName("usuário")
+						.setNameLocalizations({
+							"pt-BR": "usuário",
+							"en-US": "user",
+						})
+						.setDescription("Identifique o utilizador")
+						.setRequired(true)
+				)
+		)
+		.addSubcommand((subcommand) =>
+			subcommand
 				.setName("share_role")
 				.setNameLocalizations({
 					"pt-BR": "partilhar_cargo",
@@ -192,6 +207,33 @@ module.exports = {
 							doc.save();
 						});
 				}
+				break;
+			}
+			case "info": {
+				const membro = interaction.options.getUser("usuário");
+				if (!interaction.member.permissions.has("ManageRoles"))
+					return interaction.reply({
+						content: "Sem permissão",
+						ephemeral: true,
+					});
+				const guild = await client.db.Guilds.findOne({ _id: "1" });
+				const vip = guild.vipschedule.id(membro.id);
+				if (!vip)
+					return interaction.reply({
+						content: "Sem VIP detectado.",
+						ephemeral: true,
+					});
+				const emb = new discord.EmbedBuilder()
+					.setTitle("Vip de " + membro.user.tag)
+					.setColor(client.cor)
+					.addFields(
+						{ name: "VIP", value: `<@&${vip.vip}>` },
+						{
+							name: "Data de término",
+							value: discord.time(vip.schedule, "f"),
+						}
+					);
+				interaction.reply({ embeds: [emb] });
 				break;
 			}
 			case "remove_vip": {
