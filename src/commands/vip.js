@@ -216,7 +216,7 @@ module.exports = {
 						content: "Sem permissão",
 						ephemeral: true,
 					});
-				const guild = await client.db.Guilds.findOne({ _id: "1" });
+				const guild = await client.dbm.Guilds.findOne({ _id: "1" });
 				const vip = guild.vipschedule.id(membro.id);
 				if (!vip)
 					return interaction.reply({
