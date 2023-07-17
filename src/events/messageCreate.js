@@ -4,8 +4,6 @@ module.exports = async (client, message) => {
   if (message.guild === null) return;
   if (message.author.bot) return 0;
 
-  if (message.author.id === "799673406014095440") message.delete();
-
   if (
     (message.content.startsWith("pt?") &&
       message.author.id === "354233941550694400") ||
